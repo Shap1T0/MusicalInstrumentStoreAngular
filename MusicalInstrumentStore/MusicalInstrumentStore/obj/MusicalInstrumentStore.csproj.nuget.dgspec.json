@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\ProgectsVS\\MusicalInstrumentStore\\MusicalInstrumentStore\\MusicalInstrumentStore.csproj": {}
+    "D:\\Git\\MusicalInstrumentStoreAngular\\MusicalInstrumentStore\\MusicalInstrumentStore\\MusicalInstrumentStore.csproj": {}
   },
   "projects": {
-    "D:\\ProgectsVS\\MusicalInstrumentStore\\MusicalInstrumentStore\\MusicalInstrumentStore.csproj": {
+    "D:\\Git\\MusicalInstrumentStoreAngular\\MusicalInstrumentStore\\MusicalInstrumentStore\\MusicalInstrumentStore.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\ProgectsVS\\MusicalInstrumentStore\\MusicalInstrumentStore\\MusicalInstrumentStore.csproj",
+        "projectUniqueName": "D:\\Git\\MusicalInstrumentStoreAngular\\MusicalInstrumentStore\\MusicalInstrumentStore\\MusicalInstrumentStore.csproj",
         "projectName": "MusicalInstrumentStore",
-        "projectPath": "D:\\ProgectsVS\\MusicalInstrumentStore\\MusicalInstrumentStore\\MusicalInstrumentStore.csproj",
+        "projectPath": "D:\\Git\\MusicalInstrumentStoreAngular\\MusicalInstrumentStore\\MusicalInstrumentStore\\MusicalInstrumentStore.csproj",
         "packagesPath": "C:\\Users\\Diro\\.nuget\\packages\\",
-        "outputPath": "D:\\ProgectsVS\\MusicalInstrumentStore\\MusicalInstrumentStore\\obj\\",
+        "outputPath": "D:\\Git\\MusicalInstrumentStoreAngular\\MusicalInstrumentStore\\MusicalInstrumentStore\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Diro\\AppData\\Roaming\\NuGet\\NuGet.Config",

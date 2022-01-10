@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "wyFZ1GHgzUTkC97+bCdarohmQj6ju1VroH7+GwG92c5bQVbJgv7wLvlEhoq5AmPolDCAHdbXcbVFbS1kLH5uSQ==",
+  "dgSpecHash": "QQjOWhsYv7Dhe7j6bVWQKjwwjzpjAFJoLKo8bFfVR7eDljdpqxXgdd8Fd8uzu+dmnoxEplmzWi1EpRPzfR0LDA==",
   "success": true,
-  "projectFilePath": "D:\\ProgectsVS\\MusicalInstrumentStore\\MusicalInstrumentStore\\MusicalInstrumentStore.csproj",
+  "projectFilePath": "D:\\Git\\MusicalInstrumentStoreAngular\\MusicalInstrumentStore\\MusicalInstrumentStore\\MusicalInstrumentStore.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Diro\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\Diro\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",
