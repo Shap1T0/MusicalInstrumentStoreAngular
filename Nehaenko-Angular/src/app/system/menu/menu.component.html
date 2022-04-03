@@ -1,0 +1,21 @@
+<div>
+	<hr>
+	<ul class="nav nav-pills flex-column mb-auto">
+		<li class="nav-item">
+			<a class="nav-link text-white" (click)="onMainClick()">
+				<svg class="bi me-2" width="16" height="16"></svg>
+				Каталог
+			</a>
+		</li>
+		<hr>
+		<li class="nav-item" *ngFor="let productType of productTypes">
+			<div class="nav-link text-white"
+				[ngClass]="{'active': productType.isActive}"
+				(click)="onTypeClick(productType)">
+				<svg class="bi me-2" width="16" height="16"></svg>
+				{{productType.name}}
+			</div>
+		</li>
+	</ul>
+	<hr>
+</div>
