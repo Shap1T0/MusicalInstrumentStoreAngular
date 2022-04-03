@@ -1,0 +1,14 @@
+<div class="btn-group" role="group">
+	<button type="button" class="btn btn-outline-success">Корзина</button>
+	<button id="btnGroupDrop" type="button" class="btn btn-outline-success dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown">
+
+		<span *ngIf="products?.length != 0"
+			class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+			{{products?.length}}
+			<span class="visually-hidden"></span>
+		</span>
+	</button>
+	<ul class="dropdown-menu pre-scrollable" style="width: 350px;" aria-labelledby="btnGroupDrop">
+		<app-basket-item *ngFor="let product of products" [product]="product"></app-basket-item>
+	</ul>
+</div>

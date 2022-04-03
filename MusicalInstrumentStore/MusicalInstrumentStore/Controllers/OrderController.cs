@@ -8,25 +8,27 @@ using Microsoft.EntityFrameworkCore;
 
 namespace MusicalInstrumentStore.Controllers
 {
+    [Route("api/[controller]")]
+    [ApiController]
     public class OrderController : Controller
     {
-        MusicalInstrumentStoreContext db;
+        private MusicalInstrumentStoreContext _context;
         public OrderController(MusicalInstrumentStoreContext context)
         {
-            db = context;
+            _context = context;
         }
 
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Order>>> Get()
         {
-            return await db.Order.ToListAsync();
+            return await _context.Orders.ToListAsync();
         }
 
         // GET api/users/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Order>> Get(Guid id)
         {
-            Order order = await db.Order.FirstOrDefaultAsync(x => x.Id == id);
+            Order order = await _context.Orders.FirstOrDefaultAsync(x => x.Id == id);
 
             if (order == null)
             {
@@ -45,8 +47,8 @@ namespace MusicalInstrumentStore.Controllers
                 return BadRequest();
             }
 
-            db.Order.Add(order);
-            await db.SaveChangesAsync();
+            _context.Orders.Add(order);
+            await _context.SaveChangesAsync();
             return Ok(order);
         }
 
@@ -58,13 +60,13 @@ namespace MusicalInstrumentStore.Controllers
             {
                 return BadRequest();
             }
-            if (!db.Order.Any(x => x.Id == order.Id))
+            if (!_context.Orders.Any(x => x.Id == order.Id))
             {
                 return NotFound();
             }
 
-            db.Update(order);
-            await db.SaveChangesAsync();
+            _context.Update(order);
+            await _context.SaveChangesAsync();
             return Ok(order);
         }
 
@@ -72,13 +74,13 @@ namespace MusicalInstrumentStore.Controllers
         [HttpDelete("{id}")]
         public async Task<ActionResult<User>> Delete(Guid id)
         {
-            Order order = db.Order.FirstOrDefault(x => x.Id == id);
+            Order order = _context.Orders.FirstOrDefault(x => x.Id == id);
             if (order == null)
             {
                 return NotFound();
             }
-            db.Order.Remove(order);
-            await db.SaveChangesAsync();
+            _context.Orders.Remove(order);
+            await _context.SaveChangesAsync();
             return Ok(order);
         }
     }

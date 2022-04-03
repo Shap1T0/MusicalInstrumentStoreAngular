@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Metadata;
 
 namespace MusicalInstrumentStore
 {
-    // Для обновления сущностей из базы.
+    // Для обновления сущностей из базы. Tools –> NuGet Package Manager –> Package Manager Console
     // Scaffold-DbContext "Server=.\SQLEXPRESS;Database=MusicalInstrumentStore;Trusted_Connection=true;" Microsoft.EntityFrameworkCore.SqlServer
     public partial class MusicalInstrumentStoreContext : DbContext
     {
@@ -19,10 +19,11 @@ namespace MusicalInstrumentStore
         {
         }
 
-        public virtual DbSet<ContactOrder> ContactOrder { get; set; }
-        public virtual DbSet<Instrument> Instrument { get; set; }
-        public virtual DbSet<Order> Order { get; set; }
-        public virtual DbSet<User> User { get; set; }
+        public virtual DbSet<ContactOrder> ContactOrders { get; set; }
+        public virtual DbSet<Order> Orders { get; set; }
+        public virtual DbSet<Product> Products { get; set; }
+        public virtual DbSet<ProductType> ProductTypes { get; set; }
+        public virtual DbSet<User> Users { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -58,26 +59,11 @@ namespace MusicalInstrumentStore
                     .HasConstraintName("FK_ContactOrder_Instrument");
             });
 
-            modelBuilder.Entity<Instrument>(entity =>
-            {
-                entity.ToTable("Instrument");
-
-                entity.Property(e => e.Id).ValueGeneratedNever();
-
-                entity.Property(e => e.CreatedOn)
-                    .HasColumnType("datetime")
-                    .HasDefaultValueSql("(getdate())");
-
-                entity.Property(e => e.Name).HasMaxLength(100);
-
-                entity.Property(e => e.Price).HasColumnType("money");
-            });
-
             modelBuilder.Entity<Order>(entity =>
             {
                 entity.ToTable("Order");
 
-                entity.Property(e => e.Id).ValueGeneratedNever();
+                entity.Property(e => e.Id).HasDefaultValueSql("(newid())");
 
                 entity.Property(e => e.CreatedOn)
                     .HasColumnType("datetime")
@@ -88,6 +74,38 @@ namespace MusicalInstrumentStore
                     .HasForeignKey(d => d.ContactId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_Order_User");
+            });
+
+            modelBuilder.Entity<Product>(entity =>
+            {
+                entity.ToTable("Product");
+
+                entity.Property(e => e.Id).HasDefaultValueSql("(newid())");
+
+                entity.Property(e => e.CreatedOn)
+                    .HasColumnType("datetime")
+                    .HasDefaultValueSql("(getdate())");
+
+                entity.Property(e => e.Name).HasMaxLength(100);
+
+                entity.Property(e => e.Price).HasColumnType("money");
+
+                entity.HasOne(d => d.Type)
+                    .WithMany(p => p.Products)
+                    .HasForeignKey(d => d.TypeId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_Instrument_TypeInstrument");
+            });
+
+            modelBuilder.Entity<ProductType>(entity =>
+            {
+                entity.ToTable("ProductType");
+
+                entity.Property(e => e.Id).HasDefaultValueSql("(newid())");
+
+                entity.Property(e => e.Name)
+                    .IsRequired()
+                    .HasMaxLength(50);
             });
 
             modelBuilder.Entity<User>(entity =>
@@ -102,9 +120,17 @@ namespace MusicalInstrumentStore
 
                 entity.Property(e => e.DateOfBirthday).HasColumnType("datetime");
 
+                entity.Property(e => e.Email)
+                    .IsRequired()
+                    .HasMaxLength(50);
+
                 entity.Property(e => e.LastName).HasMaxLength(100);
 
                 entity.Property(e => e.Name).HasMaxLength(100);
+
+                entity.Property(e => e.Pass)
+                    .IsRequired()
+                    .HasMaxLength(50);
 
                 entity.Property(e => e.Surname).HasMaxLength(100);
             });

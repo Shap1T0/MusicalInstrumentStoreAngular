@@ -13,6 +13,6 @@ namespace MusicalInstrumentStore
         public Guid? ProductId { get; set; }
 
         public virtual Order Order { get; set; }
-        public virtual Instrument Product { get; set; }
+        public virtual Product Product { get; set; }
     }
 }

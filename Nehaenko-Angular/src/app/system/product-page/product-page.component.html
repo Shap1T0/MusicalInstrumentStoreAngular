@@ -1,0 +1,37 @@
+<div class="flex h-100 m-5">
+	<div class="row">
+		<div class="col">
+			<img src="{{'data:image/png;base64,' + product.icon}}" style="height: 500px; width: max-content; max-width: 500px;" class="card-img-top center-block">
+		</div>
+		<div class="col">
+			<div class="card-body">
+				<h5 class="card-title" style="height: 74px;">{{product.name}}</h5>
+				<p class="card-text">{{product.type?.name}}</p>
+				<p class="card-title-block">{{product.price | currency:'RUB '}}</p>
+				<p class="card-title-block">Количество: {{product.amount}}</p>
+				<button
+					*ngIf="inBusketCount === 0; else inBusket"
+					(click)="addBasket(product)"
+					class="btn btn-success">В корзину
+				</button>
+				<ng-template #inBusket>
+					<div>
+						Количество в корзине
+						<button
+							(click)="removeBasket(product)"
+							class="btn btn-success" style="width: 30px;"> - </button>
+							{{inBusketCount}}
+						<button
+							(click)="addBasket(product)"
+							class="btn btn-success" style="width: 30px;"> +
+						</button>
+					</div>
+				</ng-template>
+
+			</div>
+		</div>
+	</div>
+	<div class="card float-left row">
+		  <p class="float-left">{{product.description}}</p>
+	  </div>
+</div>

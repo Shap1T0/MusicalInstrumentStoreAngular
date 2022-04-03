@@ -21,14 +21,20 @@ namespace MusicalInstrumentStore.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<User>>> Get()
         {
-            return await db.User.ToListAsync();
+            return await db.Users.ToListAsync();
         }
 
-        // GET api/users/5
-        [HttpGet("{id}")]
+        #region Get 
+
+        /// <summary>
+        /// Получить контакта по Id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        [HttpGet("id/{id}")]
         public async Task<ActionResult<User>> Get(Guid id)
         {
-            User user = await db.User.FirstOrDefaultAsync(x => x.Id == id);
+            User user = await db.Users.FirstOrDefaultAsync(x => x.Id == id);
 
             if (user == null)
             {
@@ -37,6 +43,26 @@ namespace MusicalInstrumentStore.Controllers
 
             return new ObjectResult(user);
         }
+
+        /// <summary>
+        /// Получить контакта по Email
+        /// </summary>
+        /// <param name="email"></param>
+        /// <returns></returns>
+        [HttpGet("email/{email}")]
+        public async Task<ActionResult<User>> Get(string email)
+        {
+           User user = await db.Users.FirstOrDefaultAsync(x => x.Email == email);
+
+            //if (user == null)
+            //{
+            //    return NotFound();
+            //}
+
+            return new ObjectResult(user);
+        }
+
+        #endregion
 
         // POST api/users
         [HttpPost]
@@ -47,7 +73,7 @@ namespace MusicalInstrumentStore.Controllers
                 return BadRequest();
             }
 
-            db.User.Add(contact);
+            db.Users.Add(contact);
             await db.SaveChangesAsync();
             return Ok(contact);
         }
@@ -60,7 +86,7 @@ namespace MusicalInstrumentStore.Controllers
             {
                 return BadRequest();
             }
-            if (!db.User.Any(x => x.Id == contact.Id))
+            if (!db.Users.Any(x => x.Id == contact.Id))
             {
                 return NotFound();
             }
@@ -74,12 +100,12 @@ namespace MusicalInstrumentStore.Controllers
         [HttpDelete("{id}")]
         public async Task<ActionResult<User>> Delete(Guid id)
         {
-            User contact = db.User.FirstOrDefault(x => x.Id == id);
+            User contact = db.Users.FirstOrDefault(x => x.Id == id);
             if (contact == null)
             {
                 return NotFound();
             }
-            db.User.Remove(contact);
+            db.Users.Remove(contact);
             await db.SaveChangesAsync();
             return Ok(contact);
         }

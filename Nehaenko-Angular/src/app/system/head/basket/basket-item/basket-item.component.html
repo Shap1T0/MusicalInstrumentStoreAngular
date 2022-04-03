@@ -1,0 +1,15 @@
+
+<div class="list-group">
+	<a class="list-group-item list-group-item-action" aria-current="true">
+		<div class="col" style="width: 100px;">
+			<img src="{{'data:image/png;base64,' + product.icon}}" class="card-img-top center-block" style="width: 60px; height: auto;">
+		</div>
+		<div class="row">
+			<div class="d-flex w-100 justify-content-between">
+				<h5 class="mb-1">{{product.name}}</h5>
+			</div>
+			<hr>
+			<p class="mb-1">{{product.price | currency:'RUB '}}</p>
+		</div>
+	</a>
+</div>

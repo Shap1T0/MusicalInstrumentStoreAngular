@@ -5,9 +5,9 @@ using System.Collections.Generic;
 
 namespace MusicalInstrumentStore
 {
-    public partial class Instrument
+    public partial class Product
     {
-        public Instrument()
+        public Product()
         {
             ContactOrders = new HashSet<ContactOrder>();
         }
@@ -15,11 +15,14 @@ namespace MusicalInstrumentStore
         public Guid Id { get; set; }
         public DateTime CreatedOn { get; set; }
         public string Name { get; set; }
-        public Guid? Brand { get; set; }
-        public Guid? Type { get; set; }
-        public decimal? Price { get; set; }
-        public int? Amount { get; set; }
+        public Guid? BrandId { get; set; }
+        public Guid TypeId { get; set; }
+        public decimal Price { get; set; }
+        public int Amount { get; set; }
+        public string Description { get; set; }
+        public byte[] Icon { get; set; }
 
+        public virtual ProductType Type { get; set; }
         public virtual ICollection<ContactOrder> ContactOrders { get; set; }
     }
 }
